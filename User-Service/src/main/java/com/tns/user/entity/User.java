@@ -1,19 +1,25 @@
 package com.tns.user.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
+
+import java.util.UUID;
+
 @Entity
-public class User {
+@Table(name="users")
+public class User extends BaseEntity{
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(length = 36, nullable = false)
     private String id;
+    @PrePersist
+    public void generateId() {
+        if (id == null) {
+            id = UUID.randomUUID().toString();
+        }
+    }
 
     private String name;
     private String contactNo;
     private String email;
-
 
     public User() {
     }
