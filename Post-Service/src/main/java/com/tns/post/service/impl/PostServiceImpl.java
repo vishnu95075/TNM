@@ -1,6 +1,6 @@
 package com.tns.post.service.impl;
 
-import com.tns.post.entity.Post;
+import com.tns.post.model.Post;
 import com.tns.post.repository.PostRepository;
 import com.tns.post.service.IPostService;
 import org.springframework.stereotype.Service;

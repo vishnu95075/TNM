@@ -1,4 +1,4 @@
-package com.tns.post.entity;
+package com.tns.post.model;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;

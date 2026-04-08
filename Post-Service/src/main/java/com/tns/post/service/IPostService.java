@@ -1,6 +1,6 @@
 package com.tns.post.service;
 
-import com.tns.post.entity.Post;
+import com.tns.post.model.Post;
 
 import java.util.List;
 

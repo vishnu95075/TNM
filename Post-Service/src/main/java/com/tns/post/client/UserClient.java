@@ -1,6 +1,5 @@
 package com.tns.post.client;
 
-import com.tns.post.entity.User;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.GetMapping;
 

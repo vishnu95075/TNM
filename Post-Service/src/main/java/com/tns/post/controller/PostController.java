@@ -1,9 +1,7 @@
 package com.tns.post.controller;
 
 import com.tns.post.client.UserClient;
-import com.tns.post.entity.Post;
-import com.tns.post.entity.User;
-import com.tns.post.repository.PostRepository;
+import com.tns.post.model.Post;
 import com.tns.post.service.IPostService;
 import org.springframework.web.bind.annotation.*;
 
