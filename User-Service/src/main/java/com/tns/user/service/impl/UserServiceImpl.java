@@ -30,13 +30,13 @@ public class UserServiceImpl implements IUserService {
     }
 
     @Override
-    public void deleteUser(String id) {
+    public void deleteUser(Long id) {
        userRepository.deleteById(id);
     }
 
     @Override
     public User updateUser(User user) {
-        String id = user.getId();
+        Long id = user.getId();
         User user1 = userRepository.findById(id).orElseThrow(()-> new RuntimeException("User Can not found by id "+id));
       return  userRepository.save(user);
     }

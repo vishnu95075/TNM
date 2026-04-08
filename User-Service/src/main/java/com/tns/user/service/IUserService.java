@@ -7,6 +7,6 @@ import java.util.List;
 public interface IUserService {
    List<User> getAllUsers();
    User createUser(User user);
-   void deleteUser(String id);
+   void deleteUser(Long id);
    User updateUser(User user);
 }
