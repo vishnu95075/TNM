@@ -13,7 +13,12 @@ import java.util.UUID;
 public class User extends BaseEntity{
 
     @Id
+    @GeneratedValue()
     private Long id;
+
+    private String name;
+    private String email;
+    private String contactNo;
 
 }
 

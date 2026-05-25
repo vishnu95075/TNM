@@ -24,6 +24,7 @@ public class UserController {
 
     @PostMapping("/create")
     public User createUser(@RequestBody  User user){
+        System.out.println("hello Its work Create user");
         return userService.createUser(user);
     }
 
