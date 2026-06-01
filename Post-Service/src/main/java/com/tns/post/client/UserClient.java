@@ -1,6 +1,6 @@
 package com.tns.post.client;
 
-import com.tns.post.model.User;
+import com.tns.post.model.UserModel;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.GetMapping;
 
@@ -10,5 +10,5 @@ import java.util.List;
 public interface UserClient {
 
     @GetMapping("/api/dummy")
-    List<User> getAllUser();
+    List<UserModel> getAllUser();
 }

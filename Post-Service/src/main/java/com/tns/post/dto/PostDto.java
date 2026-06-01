@@ -1,17 +1,11 @@
 package com.tns.post.dto;
 
-import java.util.List;
+import lombok.Getter;
+import lombok.Setter;
 
+@Getter
+@Setter
 public class PostDto {
-    private String id;
-    private String name;
-
-    private String message;
-
-//    Implement last end
-//    private Content content;
-//    private List<Tag> tags;
-
-
-
+    private String content;
+    private String userName;
 }

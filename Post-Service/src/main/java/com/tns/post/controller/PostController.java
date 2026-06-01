@@ -1,50 +1,28 @@
 package com.tns.post.controller;
 
-import com.tns.post.client.UserClient;
-import com.tns.post.model.Post;
-import com.tns.post.model.User;
-import com.tns.post.service.IPostService;
+import com.tns.post.dto.PostDto;
+import com.tns.post.service.impl.PostServiceImpl;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
-@RequestMapping("/post")
+@RequestMapping("/api/posts")
 public class PostController {
+    private final PostServiceImpl postService;
 
-    private final IPostService  iPostService;
-    private final UserClient userClient;
-
-    public PostController(IPostService iPostService, UserClient userClient) {
-        this.iPostService = iPostService;
-        this.userClient = userClient;
+    public PostController(PostServiceImpl postService) {
+        this.postService = postService;
     }
 
     @PostMapping
-    public Post createPost(@RequestBody Post  post){
-        return iPostService.createPost(post);
-    }
-
-    @GetMapping("/{id}")
-    public Post getPost(@PathVariable Integer id){
-        return this.iPostService.getPost(id);
+    public PostDto createPost(@RequestBody PostDto postDto) {
+        return postService.createPost(postDto);
     }
 
     @GetMapping
-    public List<Post> getAllPost(){
-       List<Post> posts =  this.iPostService.getAllPost();
-        System.out.println("Users : "+userClient.getAllUser());
-        List<User> users = userClient.getAllUser();
-
-        for(User u:users){
-            System.out.println(u);
-            System.out.println(u.getId()+" "+u.getName());
-        }
-
-        for(Post post:posts){
-            post.setUsers(users);
-        }
-        return posts;
+    public List<PostDto> getPosts() {
+        return postService.getAllPosts();
     }
 
 

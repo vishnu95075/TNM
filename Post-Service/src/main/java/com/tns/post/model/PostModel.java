@@ -9,6 +9,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Entity
@@ -16,13 +17,19 @@ import java.util.List;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class Post {
+public class PostModel {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
-    private String name;
+    private Long id;
 
-    transient private List<User> users;
+    private String content;
+
+    private String userName;
+
+    private LocalDateTime createdAt;
+
+
+    transient private List<UserModel> users;
 
 }

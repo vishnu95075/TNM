@@ -11,7 +11,7 @@ import java.util.Date;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class User {
+public class UserModel {
     private String id;
     private String userName;
     private String name;

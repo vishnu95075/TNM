@@ -1,11 +1,11 @@
 package com.tns.post.service;
 
-import com.tns.post.model.Post;
+import com.tns.post.dto.PostDto;
 
 import java.util.List;
 
 public interface IPostService {
-    Post createPost(Post post);
-    Post getPost(Integer id);
-    List<Post> getAllPost();
+    PostDto createPost(PostDto postDto);
+    List<PostDto> getAllPosts();
+
 }
