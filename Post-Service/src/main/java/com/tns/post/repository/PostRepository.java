@@ -1,15 +1,10 @@
 package com.tns.post.repository;
 
-import com.tns.post.entity.Post;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
+import com.tns.post.entity.PostEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 
-import java.time.LocalDateTime;
-import java.util.List;
 
-
-public interface PostRepository extends JpaRepository<Post, Long> {
+public interface PostRepository extends JpaRepository<PostEntity, Long> {
 
 //    Page<Post> findByExpiresAtAfter(
 //            LocalDateTime currentTime,

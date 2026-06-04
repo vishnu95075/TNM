@@ -6,6 +6,11 @@ import lombok.Setter;
 @Getter
 @Setter
 public class PostDto {
+    private Long userId;
+
     private String content;
-    private String userName;
+
+    // Image/Video stored in S3, Cloudinary, etc.
+    private String mediaUrl;
+
 }

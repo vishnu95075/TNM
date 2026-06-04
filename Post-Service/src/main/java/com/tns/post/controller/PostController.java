@@ -1,7 +1,9 @@
 package com.tns.post.controller;
 
 import com.tns.post.dto.PostDto;
+import com.tns.post.dto.ResponseDto;
 import com.tns.post.service.impl.PostServiceImpl;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -16,7 +18,7 @@ public class PostController {
     }
 
     @PostMapping
-    public PostDto createPost(@RequestBody PostDto postDto) {
+    public ResponseEntity<ResponseDto> createPost(@RequestBody PostDto postDto) {
         return postService.createPost(postDto);
     }
 

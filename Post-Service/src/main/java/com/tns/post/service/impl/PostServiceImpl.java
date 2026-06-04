@@ -1,12 +1,19 @@
 package com.tns.post.service.impl;
 
+import com.tns.post.common.constants.PostResponseConstants;
 import com.tns.post.dto.PostDto;
+import com.tns.post.dto.ResponseDto;
+import com.tns.post.entity.PostEntity;
+import com.tns.post.mapper.PostMapper;
 import com.tns.post.model.PostModel;
 import com.tns.post.repository.PostRepository;
 import com.tns.post.service.IPostService;
+import jakarta.persistence.Entity;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
@@ -23,21 +30,13 @@ public class PostServiceImpl{
     }
 
   // Create post
-    public PostDto createPost(PostDto postDto) {
+    public ResponseEntity<ResponseDto> createPost(PostDto postDto) {
 
-        PostModel post = new PostModel();
+        PostEntity postEntity  = PostMapper.mapToPostEntity(postDto);
+        PostEntity savedPost = postRepository.save(postEntity);
 
-        post.setContent(postDto.getContent());
-        post.setUserName(postDto.getUserName());
-        post.setCreatedAt(LocalDateTime.now());
 
-        PostModel savedPost = postRepository.save(post);
-
-        PostDto response = new PostDto();
-        response.setContent(savedPost.getContent());
-        response.setUserName(savedPost.getUserName());
-
-        return response;
+        return  ResponseEntity.status(HttpStatus.CREATED).body(new ResponseDto(PostResponseConstants.CREATED_STATUS,PostResponseConstants.CREATED_POST_MSG));
     }
 
 //    // Get all posts
