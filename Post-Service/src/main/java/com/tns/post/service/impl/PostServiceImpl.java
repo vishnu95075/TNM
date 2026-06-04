@@ -14,7 +14,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
-public class PostServiceImpl implements IPostService {
+public class PostServiceImpl{
     private final PostRepository postRepository;
 
 
@@ -22,7 +22,7 @@ public class PostServiceImpl implements IPostService {
         this.postRepository = postRepository;
     }
 
-    // Create post
+  // Create post
     public PostDto createPost(PostDto postDto) {
 
         PostModel post = new PostModel();
@@ -40,25 +40,25 @@ public class PostServiceImpl implements IPostService {
         return response;
     }
 
-    // Get all posts
-    public List<PostDto> getAllPosts() {
-
-        return postRepository.findAll()
-                .stream()
-                .map(post -> {
-                    PostDto dto = new PostDto();
-                    dto.setContent(post.getContent());
-                    dto.setUserName(post.getUserName());
-                    return dto;
-                })
-                .collect(Collectors.toList());
-    }
-    public Page<PostModel> getPosts(int page, int size) {
-
-        Pageable pageable =
-                PageRequest.of(page, size);
-
-        return postRepository
-                .findByIsDeletedFalse(pageable);
-    }
+//    // Get all posts
+//    public List<PostDto> getAllPosts() {
+//
+//        return postRepository.findAll()
+//                .stream()
+//                .map(post -> {
+//                    PostDto dto = new PostDto();
+//                    dto.setContent(post.getContent());
+//                    dto.setUserName(post.getUserName());
+//                    return dto;
+//                })
+//                .collect(Collectors.toList());
+//    }
+//    public Page<PostModel> getPosts(int page, int size) {
+//
+//        Pageable pageable =
+//                PageRequest.of(page, size);
+//
+//        return postRepository
+//                .findByIsDeletedFalse(pageable);
+//    }
 }
