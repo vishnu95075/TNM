@@ -2,11 +2,10 @@ package com.tns.post.dto;
 
 import lombok.*;
 
-@Getter
-@Setter
+@Data
 @AllArgsConstructor
 @NoArgsConstructor
 public class ResponseDto {
-    private String statusCode;
     private String message;
+    private boolean success;
 }

@@ -30,13 +30,11 @@ public class PostServiceImpl{
     }
 
   // Create post
-    public ResponseEntity<ResponseDto> createPost(PostDto postDto) {
+    public void createPost(PostDto postDto) {
 
         PostEntity postEntity  = PostMapper.mapToPostEntity(postDto);
         PostEntity savedPost = postRepository.save(postEntity);
 
-
-        return  ResponseEntity.status(HttpStatus.CREATED).body(new ResponseDto(PostResponseConstants.CREATED_STATUS,PostResponseConstants.CREATED_POST_MSG));
     }
 
 //    // Get all posts

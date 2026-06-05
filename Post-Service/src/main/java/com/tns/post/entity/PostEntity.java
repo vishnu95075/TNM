@@ -1,6 +1,11 @@
 package com.tns.post.entity;
 import jakarta.persistence.*;
 import lombok.*;
+import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.annotation.LastModifiedDate;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
+import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
+
 import java.time.LocalDateTime;
 
 @Entity
@@ -9,7 +14,7 @@ import java.time.LocalDateTime;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-@Builder
+@EntityListeners(AuditingEntityListener.class)
 public class PostEntity {
 
     @Id
@@ -26,21 +31,17 @@ public class PostEntity {
 
     private String mediaType; // IMAGE, VIDEO
 
-    // Status expires after 24 hours
-    private LocalDateTime expiresAt;
-
     // Number of views
-    private Long viewCount;
+    private Long viewCount=0L;
 
-    // Number of likes
-    private Long likeCount;
+    // Number of likes --> This is update by like table filed map (total count(likes))
+    private Long likeCount=0L;
 
-    // Audit fields
-    private String createdBy;
-
-    private String updatedBy;
-
+    @CreatedDate
+    @Column(updatable = false)
     private LocalDateTime createdAt;
 
+    @LastModifiedDate
+    @Column(insertable = false )
     private LocalDateTime updatedAt;
 }
