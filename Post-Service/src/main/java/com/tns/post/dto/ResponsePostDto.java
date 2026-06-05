@@ -2,7 +2,7 @@ package com.tns.post.dto;
 import lombok.Data;
 
 @Data
-public class CreatePostRequest {
+public class ResponsePostDto {
 
     private String content;
 

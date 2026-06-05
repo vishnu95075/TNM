@@ -1,17 +1,17 @@
 package com.tns.post.mapper;
 
-import com.tns.post.dto.PostDto;
+import com.tns.post.dto.RequestPostDto;
 import com.tns.post.entity.PostEntity;
 
 public class PostMapper {
-    public static PostDto mapToPostDto(PostEntity postEntity) {
-        PostDto postDto = new PostDto();
+    public static RequestPostDto mapToPostDto(PostEntity postEntity) {
+        RequestPostDto postDto = new RequestPostDto();
         postDto.setContent(postEntity.getContent());
         postDto.setUserId(postEntity.getUserId());
         return postDto;
     }
 
-    public static PostEntity mapToPostEntity(PostDto postDto) {
+    public static PostEntity mapToPostEntity(RequestPostDto postDto) {
         PostEntity postEntity = new PostEntity();
         postEntity.setContent(postDto.getContent());
         postEntity.setMediaUrl(postDto.getMediaUrl());

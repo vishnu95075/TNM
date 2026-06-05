@@ -5,7 +5,7 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class PostDto {
+public class RequestPostDto {
     private Long userId;
 
     private String content;

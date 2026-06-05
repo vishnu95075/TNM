@@ -1,4 +1,5 @@
 package com.tns.post.entity;
+
 import jakarta.persistence.*;
 import lombok.*;
 import org.springframework.data.annotation.CreatedDate;
@@ -32,16 +33,16 @@ public class PostEntity {
     private String mediaType; // IMAGE, VIDEO
 
     // Number of views
-    private Long viewCount=0L;
+    private Long viewCount = 0L;
 
     // Number of likes --> This is update by like table filed map (total count(likes))
-    private Long likeCount=0L;
+    private Long likeCount = 0L;
 
     @CreatedDate
     @Column(updatable = false)
     private LocalDateTime createdAt;
 
     @LastModifiedDate
-    @Column(insertable = false )
+    @Column(insertable = false)
     private LocalDateTime updatedAt;
 }
