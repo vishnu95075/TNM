@@ -4,13 +4,11 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
-import java.util.UUID;
-
 @Getter
 @Setter
 @Entity
 @Table(name="users")
-public class User extends BaseEntity{
+public class UserEntity extends BaseEntity{
 
     @Id
     @GeneratedValue()

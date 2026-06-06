@@ -1,12 +1,12 @@
 package com.tns.user.service;
 
-import com.tns.user.entity.User;
+import com.tns.user.entity.UserEntity;
 
 import java.util.List;
 
 public interface IUserService {
-   List<User> getAllUsers();
-   User createUser(User user);
+   List<UserEntity> getAllUsers();
+   UserEntity createUser(UserEntity user);
    void deleteUser(Long id);
-   User updateUser(User user);
+   UserEntity updateUser(UserEntity user);
 }

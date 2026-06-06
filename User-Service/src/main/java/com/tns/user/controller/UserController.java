@@ -1,6 +1,6 @@
 package com.tns.user.controller;
 
-import com.tns.user.entity.User;
+import com.tns.user.entity.UserEntity;
 import com.tns.user.service.IUserService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/user")
+@RequestMapping("/api/user")
 public class UserController {
      private final IUserService userService;
 
@@ -17,23 +17,23 @@ public class UserController {
         this.userService = userService;
     }
 
-    @GetMapping("/fetch")
-    public ResponseEntity<List<User>> getAllUsers() {
+    @GetMapping
+    public ResponseEntity<List<UserEntity>> getAllUsers() {
         return ResponseEntity.status(HttpStatus.OK).body(userService.getAllUsers());
     }
 
-    @PostMapping("/create")
-    public User createUser(@RequestBody  User user){
+    @PostMapping
+    public UserEntity createUser(@RequestBody UserEntity user){
         System.out.println("hello Its work Create user");
         return userService.createUser(user);
     }
 
-    @PutMapping("/update")
-    public User updateUser(@RequestBody User user){
+    @PutMapping
+    public UserEntity updateUser(@RequestBody UserEntity user){
         return userService.updateUser(user);
     }
 
-    @DeleteMapping("/delete/{id}")
+    @DeleteMapping("/{id}")
     public String deleteUser(@PathVariable Long id){
         userService.deleteUser(id);
         return "User Successfully Delete";
