@@ -23,13 +23,25 @@ public class PostController {
     @PostMapping
     public ResponseEntity<ResponseDto> createPost(@RequestBody RequestPostDto postDto) {
         postService.createPost(postDto);
-        return ResponseEntity.status(HttpStatus.CREATED).body(new ResponseDto(PostResponseConstants.CREATED_POST_MSG, PostResponseConstants.SUCCESS));
+        return ResponseEntity.status(HttpStatus.CREATED).body(new ResponseDto(PostResponseConstants.POST_CREATED, PostResponseConstants.SUCCESS));
     }
 
     @GetMapping
     public ResponseEntity<List<ResponsePostDto>> getPosts() {
         List<ResponsePostDto> responsePostDto = postService.getAllPosts();
         return ResponseEntity.status(HttpStatus.OK).body(responsePostDto);
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<ResponseDto> deletePost(@PathVariable Long id) {
+        System.out.println("Delete Controller " + id);
+        boolean isDeleted = postService.deletePostById(id);
+        if (isDeleted) {
+            return ResponseEntity.status(HttpStatus.OK).body(new ResponseDto(PostResponseConstants.POST_DELETED, PostResponseConstants.SUCCESS));
+        } else {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(new ResponseDto(PostResponseConstants.POST_NOT_FOUND, PostResponseConstants.FAIL));
+        }
+
     }
 
 

@@ -3,6 +3,7 @@ package com.tns.post.service.impl;
 import com.tns.post.dto.RequestPostDto;
 import com.tns.post.dto.ResponsePostDto;
 import com.tns.post.entity.PostEntity;
+import com.tns.post.exception.ResourceNotFoundException;
 import com.tns.post.mapper.PostMapper;
 import com.tns.post.repository.PostRepository;
 import org.springframework.stereotype.Service;
@@ -11,7 +12,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
-public class PostServiceImpl{
+public class PostServiceImpl {
     private final PostRepository postRepository;
 
 
@@ -21,7 +22,7 @@ public class PostServiceImpl{
 
     public void createPost(RequestPostDto postDto) {
 
-        PostEntity postEntity  = PostMapper.mapToPostEntity(postDto);
+        PostEntity postEntity = PostMapper.mapToPostEntity(postDto);
         PostEntity savedPost = postRepository.save(postEntity);
 
     }
@@ -46,4 +47,12 @@ public class PostServiceImpl{
 //        return postRepository
 //                .findByIsDeletedFalse(pageable);
 //    }
+
+    public boolean deletePostById(Long id) {
+        boolean isExist  = postRepository.existsById(id);
+        if(isExist){
+            postRepository.deleteById(id);
+        }
+        return isExist;
+    }
 }
