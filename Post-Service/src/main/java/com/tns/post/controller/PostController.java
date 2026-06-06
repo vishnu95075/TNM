@@ -34,7 +34,6 @@ public class PostController {
 
     @GetMapping("/{id}")
     public ResponseEntity<?> getPostById(@PathVariable Long id) {
-        System.out.println("Get By Id " + id);
         ResponsePostDto responsePostDto = postService.getPostById(id);
         if (responsePostDto != null) {
             return ResponseEntity.status(HttpStatus.OK).body(responsePostDto);
