@@ -32,6 +32,19 @@ public class PostController {
         return ResponseEntity.status(HttpStatus.OK).body(responsePostDto);
     }
 
+    @GetMapping("/{id}")
+    public ResponseEntity<?> getPostById(@PathVariable Long id) {
+        System.out.println("Get By Id " + id);
+        ResponsePostDto responsePostDto = postService.getPostById(id);
+        if (responsePostDto != null) {
+            return ResponseEntity.status(HttpStatus.OK).body(responsePostDto);
+        } else {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(new ResponseDto(PostResponseConstants.POST_NOT_FOUND, PostResponseConstants.FAIL));
+        }
+
+    }
+
+
     @DeleteMapping("/{id}")
     public ResponseEntity<ResponseDto> deletePost(@PathVariable Long id) {
         System.out.println("Delete Controller " + id);

@@ -23,7 +23,7 @@ public class PostServiceImpl {
     public void createPost(RequestPostDto postDto) {
 
         PostEntity postEntity = PostMapper.mapToPostEntity(postDto);
-        PostEntity savedPost = postRepository.save(postEntity);
+        postRepository.save(postEntity);
 
     }
 
@@ -31,13 +31,25 @@ public class PostServiceImpl {
 
         return postRepository.findAll()
                 .stream()
-                .map(post -> {
+                .map(postEntity -> {
                     ResponsePostDto responsePostDto = new ResponsePostDto();
-                    responsePostDto.setContent(post.getContent());
-                    responsePostDto.setMediaUrl(post.getMediaUrl());
+                    responsePostDto.setContent(postEntity.getContent());
+                    responsePostDto.setMediaUrl(postEntity.getMediaUrl());
                     return responsePostDto;
                 })
                 .collect(Collectors.toList());
+    }
+
+    public ResponsePostDto getPostById(Long id) {
+        boolean isExist = postRepository.existsById(id);
+        if (isExist) {
+            PostEntity postEntity = postRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Post", "Id", id));
+            ResponsePostDto responsePostDto = new ResponsePostDto();
+            responsePostDto.setContent(postEntity.getContent());
+            responsePostDto.setMediaUrl(postEntity.getMediaUrl());
+            return responsePostDto;
+        }
+        return null;
     }
 //    public Page<PostModel> getPosts(int page, int size) {
 //
@@ -49,8 +61,8 @@ public class PostServiceImpl {
 //    }
 
     public boolean deletePostById(Long id) {
-        boolean isExist  = postRepository.existsById(id);
-        if(isExist){
+        boolean isExist = postRepository.existsById(id);
+        if (isExist) {
             postRepository.deleteById(id);
         }
         return isExist;
