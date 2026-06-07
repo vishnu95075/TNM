@@ -1,6 +1,6 @@
 package com.tns.user.service.impl;
 
-import com.tns.user.entity.UserEntity;
+import com.tns.user.entity.User;
 import com.tns.user.repository.UserRepository;
 import com.tns.user.service.IUserService;
 import org.springframework.stereotype.Service;
@@ -17,16 +17,13 @@ public class UserServiceImpl implements IUserService {
     }
 
     @Override
-    public List<UserEntity> getAllUsers() {
+    public List<User> getAllUsers() {
         return userRepository.findAll();
     }
 
     @Override
-    public UserEntity createUser(UserEntity user) {
-        user.setCreatedAt(LocalDateTime.now());
-        user.setUpdatedAt(LocalDateTime.now());
+    public User createUser(User user) {
         return userRepository.save(user);
-
     }
 
     @Override
@@ -35,9 +32,9 @@ public class UserServiceImpl implements IUserService {
     }
 
     @Override
-    public UserEntity updateUser(UserEntity user) {
+    public User updateUser(User user) {
         Long id = user.getId();
-        UserEntity user1 = userRepository.findById(id).orElseThrow(()-> new RuntimeException("User Can not found by id "+id));
+        User user1 = userRepository.findById(id).orElseThrow(()-> new RuntimeException("User Can not found by id "+id));
       return  userRepository.save(user);
     }
 }
