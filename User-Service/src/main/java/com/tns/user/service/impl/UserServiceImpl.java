@@ -3,6 +3,7 @@ package com.tns.user.service.impl;
 import com.tns.user.entity.User;
 import com.tns.user.repository.UserRepository;
 import com.tns.user.service.IUserService;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
@@ -11,6 +12,7 @@ import java.util.List;
 @Service
 public class UserServiceImpl implements IUserService {
     private final UserRepository userRepository;
+    private PasswordEncoder passwordEncoder;
 
     public UserServiceImpl(UserRepository userRepository) {
         this.userRepository = userRepository;
