@@ -23,6 +23,8 @@ public class User {
     @Column(unique = true, nullable = false)
     private String mobileNumber;
 
+    private String password;
+
     private boolean active = true;
 
     @Setter

@@ -14,8 +14,9 @@ public class UserServiceImpl implements IUserService {
     private final UserRepository userRepository;
     private PasswordEncoder passwordEncoder;
 
-    public UserServiceImpl(UserRepository userRepository) {
+    public UserServiceImpl(UserRepository userRepository,PasswordEncoder passwordEncoder) {
         this.userRepository = userRepository;
+        this.passwordEncoder=passwordEncoder;
     }
 
     @Override
@@ -25,6 +26,8 @@ public class UserServiceImpl implements IUserService {
 
     @Override
     public User createUser(User user) {
+        String hashPwd = passwordEncoder.encode(user.getPassword());
+        user.setPassword(hashPwd);
         return userRepository.save(user);
     }
 

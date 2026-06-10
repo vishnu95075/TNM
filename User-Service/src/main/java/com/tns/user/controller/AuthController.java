@@ -1,6 +1,5 @@
 package com.tns.user.controller;
 
-import com.tns.user.service.OtpService;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.web.bind.annotation.*;
 
