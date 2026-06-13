@@ -12,7 +12,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/api/user")
 public class UserController {
-     private final IUserService userService;
+    private final IUserService userService;
 
     public UserController(IUserService userService) {
         this.userService = userService;
@@ -23,29 +23,42 @@ public class UserController {
         return ResponseEntity.status(HttpStatus.OK).body(userService.getAllUsers());
     }
 
+
+    @PostMapping("/register")
+    public String register() {
+        return "success";
+    }
+
+
+    @GetMapping("/hello")
+    public String hello() {
+        return "Hello";
+    }
+
     @PostMapping
-    public User registerUser(@RequestBody User user){
+    public User registerUser(@RequestBody User user) {
+        System.out.println("Create " + user);
         System.out.println("hello Its work Create user");
         return userService.createUser(user);
     }
 
     @PutMapping
-    public User updateUser(@RequestBody User user){
+    public User updateUser(@RequestBody User user) {
         return userService.updateUser(user);
     }
 
     @DeleteMapping("/{id}")
-    public String deleteUser(@PathVariable Long id){
-        userService.deleteUser(id);
+    public String deleteUser(@PathVariable String userName) {
+        userService.deleteUser(userName);
         return "User Successfully Delete";
     }
 
-    // Authentication
-        @GetMapping("/user-profile")
-        @PreAuthorize("hasAnyRole('USER', 'ADMIN')")
-        public String getUserProfile() {
-            return "Accessible by logged-in mobile users.";
-        }
-
+//    // Authentication
+//    @GetMapping("/user-profile")
+//    @PreAuthorize("hasAnyRole('USER', 'ADMIN')")
+//    public String getUserProfile() {
+//        return "Accessible by logged-in mobile users.";
+//    }
+//
 
 }

@@ -1,40 +1,26 @@
 package com.tns.user.controller;
 
-import org.springframework.security.authentication.AuthenticationManager;
+import com.tns.user.entity.User;
+import com.tns.user.repository.UserRepository;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.provisioning.UserDetailsManager;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api/auth")
-public class AuthController {
+public class AuthController implements UserDetailsService {
+    private final UserRepository userRepository;
 
-    private final AuthenticationManager authenticationManager;
-    private final OtpService otpService;
+    public AuthController(UserRepository userRepository) {
+        this.userRepository = userRepository;
+    }
 
-    public AuthController(AuthenticationManager authenticationManager, OtpService otpService) {
-        this.authenticationManager = authenticationManager;
-        this.otpService = otpService;
-    }
-/*
-This is use in future
-    // Endpoint 1: Send OTP to Mobile
-    @PostMapping("/send")
-    public ResponseEntity<String> sendOtp(@RequestParam String mobileNumber) {
-        System.out.println("send otp "+mobileNumber);
-        otpService.generateAndSendOtp(mobileNumber);
-        return ResponseEntity.ok("OTP sent successfully to " + mobileNumber);
-    }
-    // Endpoint 2: Verify OTP and Login
+    @Override
     @PostMapping("/login")
-    public ResponseEntity<String> login(@RequestParam String mobileNumber, @RequestParam String otp) {
-        MobileAuthenticationToken authenticationToken = new MobileAuthenticationToken(mobileNumber, otp);
-
-        // Triggers MobileAuthenticationProvider
-        Authentication authentication = authenticationManager.authenticate(authenticationToken);
-
-        // Generate and return your session token (like a JWT) here
-        return ResponseEntity.ok("Login Successful! Authorities: " + authentication.getAuthorities());
+    public UserDetails loadUserByUsername(@RequestParam String userName) throws UsernameNotFoundException {
+        User user = userRepository.findByUserName(userName);
+        return org.springframework.security.core.userdetails.User.withUsername(user.getUserName()).password(user.getPassword()).authorities("ADMIN").build();
     }
-
- */
 }
-

@@ -9,7 +9,7 @@ import java.time.LocalDateTime;
 import java.util.Set;
 
 @Entity
-@Table(name = "users")
+@Table(name = "user_demo")
 @Getter
 @Setter
 @NoArgsConstructor
@@ -17,25 +17,9 @@ import java.util.Set;
 public class User {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-
-    @Column(unique = true, nullable = false)
-    private String mobileNumber;
-
+    private String userName;
+    private String name;
     private String password;
-
-    private boolean active = true;
-
-    @Setter
-    @ElementCollection(fetch = FetchType.EAGER)
-    @CollectionTable(name = "user_roles", joinColumns = @JoinColumn(name = "user_id"))
-    @Enumerated(EnumType.STRING)
-    private Set<Role> roles;
-
-    public void setVerified(boolean b) {
-    }
-
 
 }
 
