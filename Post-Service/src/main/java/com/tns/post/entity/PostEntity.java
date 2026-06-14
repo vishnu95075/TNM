@@ -25,6 +25,8 @@ public class PostEntity {
     // User who created the post
     private Long userId;
 
+
+    //    This will Update in future
     private String content;
 
     // Image/Video stored in S3, Cloudinary, etc.
@@ -32,11 +34,6 @@ public class PostEntity {
 
     private String mediaType; // IMAGE, VIDEO
 
-    // Number of views
-    private Long viewCount = 0L;
-
-    // Number of likes --> This is update by like table filed map (total count(likes))
-    private Long likeCount = 0L;
 
     @CreatedDate
     @Column(updatable = false)
