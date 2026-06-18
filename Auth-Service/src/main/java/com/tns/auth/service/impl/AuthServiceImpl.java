@@ -12,6 +12,8 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.time.ZoneId;
+
 @Service
 @RequiredArgsConstructor
 public class AuthServiceImpl implements AuthService {
@@ -52,4 +54,10 @@ public class AuthServiceImpl implements AuthService {
 
         return new AuthResponse(token);
     }
+
+    @Override
+    public String logout() {
+        return "Logged out successfully";
+    }
+
 }
