@@ -1,10 +1,9 @@
 package com.tns.user.controller;
 
-import com.tns.user.entity.User;
+import com.tns.user.entity.UserProfile;
 import com.tns.user.service.IUserService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -19,7 +18,7 @@ public class UserController {
     }
 
     @GetMapping
-    public ResponseEntity<List<User>> getAllUsers() {
+    public ResponseEntity<List<UserProfile>> getAllUsers() {
         return ResponseEntity.status(HttpStatus.OK).body(userService.getAllUsers());
     }
 
@@ -36,14 +35,14 @@ public class UserController {
     }
 
     @PostMapping
-    public User registerUser(@RequestBody User user) {
+    public UserProfile registerUser(@RequestBody UserProfile user) {
         System.out.println("Create " + user);
         System.out.println("hello Its work Create user");
         return userService.createUser(user);
     }
 
     @PutMapping
-    public User updateUser(@RequestBody User user) {
+    public UserProfile updateUser(@RequestBody UserProfile user) {
         return userService.updateUser(user);
     }
 

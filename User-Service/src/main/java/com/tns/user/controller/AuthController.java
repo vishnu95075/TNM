@@ -1,6 +1,6 @@
 package com.tns.user.controller;
 
-import com.tns.user.entity.User;
+import com.tns.user.entity.UserProfile;
 import com.tns.user.repository.UserRepository;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -19,7 +19,7 @@ public class AuthController implements UserDetailsService {
     @Override
     @PostMapping("/login")
     public UserDetails loadUserByUsername(@RequestParam String userName) throws UsernameNotFoundException {
-        User user = userRepository.findByUserName(userName);
+        UserProfile user = userRepository.findByUserName(userName);
         return org.springframework.security.core.userdetails.User.withUsername(user.getUserName()).password(user.getPassword()).authorities("ADMIN").build();
     }
 }
