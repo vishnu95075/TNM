@@ -16,15 +16,15 @@ import java.util.List;
 public class UserProfile {
 
     @Id
+    private String userId;
     private String userName;
-    private String name;
-    private String password;
+    private String fullName;
+    private String bio;
     private String profilePicUrl;
 
-    private List<String> blockedUser;
-    private List<String> followUser;
-    private List<String> followerUser;
-
+//    private List<String> blockedUser;
+//    private List<String> followUser;
+//    private List<String> followerUser;
 
 }
 
