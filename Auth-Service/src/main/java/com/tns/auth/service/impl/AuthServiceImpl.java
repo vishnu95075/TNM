@@ -3,7 +3,7 @@ package com.tns.auth.service.impl;
 import com.tns.auth.dto.AuthResponse;
 import com.tns.auth.dto.LoginRequest;
 import com.tns.auth.dto.RegisterRequest;
-import com.tns.auth.entity.User;
+import com.tns.auth.entity.AuthUser;
 import com.tns.auth.repository.UserRepository;
 import com.tns.auth.security.JwtService;
 import lombok.RequiredArgsConstructor;
@@ -11,8 +11,6 @@ import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
-
-import java.time.ZoneId;
 
 @Service
 @RequiredArgsConstructor
@@ -25,7 +23,7 @@ public class AuthServiceImpl implements AuthService {
 
     public AuthResponse register(RegisterRequest request) {
 
-        User user = User.builder()
+        AuthUser user = AuthUser.builder()
                 .username(request.getUsername())
                 .email(request.getEmail())
                 .password(
@@ -47,7 +45,7 @@ public class AuthServiceImpl implements AuthService {
                         request.getUsername(),
                         request.getPassword()));
 
-        User user = repository.findByUsername(
+        AuthUser user = repository.findByUsername(
                 request.getUsername()).orElseThrow();
 
         String token = jwtService.generateToken(user);

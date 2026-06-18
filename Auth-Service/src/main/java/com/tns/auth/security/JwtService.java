@@ -1,8 +1,7 @@
 package com.tns.auth.security;
-import com.tns.auth.entity.User;
+import com.tns.auth.entity.AuthUser;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
-import io.jsonwebtoken.SignatureAlgorithm;
 import io.jsonwebtoken.io.Decoders;
 import io.jsonwebtoken.security.Keys;
 import org.springframework.beans.factory.annotation.Value;
@@ -21,7 +20,7 @@ public class JwtService {
     @Value("${jwt.expiration}")
     private long jwtExpiration;
 
-    public String generateToken(User user) {
+    public String generateToken(AuthUser user) {
 
         return Jwts.builder()
                 .subject(user.getUsername())
@@ -57,7 +56,7 @@ public class JwtService {
                 .getPayload();
     }
 
-    public boolean isTokenValid(String token, User user) {
+    public boolean isTokenValid(String token, AuthUser user) {
 
         String username = extractUsername(token);
 

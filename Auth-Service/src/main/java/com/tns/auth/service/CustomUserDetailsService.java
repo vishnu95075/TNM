@@ -1,6 +1,6 @@
 package com.tns.auth.service;
 
-import com.tns.auth.entity.User;
+import com.tns.auth.entity.AuthUser;
 import com.tns.auth.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -18,7 +18,7 @@ public class CustomUserDetailsService implements UserDetailsService {
     public UserDetails loadUserByUsername(String username)
             throws UsernameNotFoundException {
 
-        User user = repository.findByUsername(username)
+        AuthUser user = repository.findByUsername(username)
                 .orElseThrow(() ->
                         new UsernameNotFoundException(
                                 "User not found"));
