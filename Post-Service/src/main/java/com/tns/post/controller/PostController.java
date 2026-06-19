@@ -32,6 +32,17 @@ public class PostController {
         return ResponseEntity.status(HttpStatus.OK).body(responsePostDto);
     }
 
+    @GetMapping("/auth")
+    public String getUserAuth(@RequestHeader(value = "Authorization",required = false) String authHeader) {
+//        Claims claims = extractAllClaims(token);
+        if (authHeader==null)
+            return "ResponseEntity.status(HttpStatus.OK).body(responsePostDto)  No Auth: ";
+        else{
+//            Claims claims = extractAllClaims(token);
+            return "Repost Auth: "+authHeader;
+        }
+    }
+
     @GetMapping("/{id}")
     public ResponseEntity<?> getPostById(@PathVariable Long id) {
         ResponsePostDto responsePostDto = postService.getPostById(id);

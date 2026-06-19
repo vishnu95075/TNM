@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import java.security.Key;
 import java.util.Date;
+import java.util.UUID;
 import java.util.function.Function;
 
 @Service
@@ -24,9 +25,13 @@ public class JwtService {
 
         return Jwts.builder()
                 .subject(user.getUsername())
+                .claim("userId", user.getAuthId())
+                .claim("email", user.getEmail())
                 .claim("role", user.getRole())
+                .issuer("TNS-Auth-Service")
                 .issuedAt(new Date())
                 .expiration(new Date(System.currentTimeMillis() + jwtExpiration))
+                .id(UUID.randomUUID().toString())
                 .signWith(getSigningKey())
                 .compact();
     }
