@@ -22,6 +22,9 @@ public class AuthUser {
     @Column(unique = true)
     private String email;
 
+    @Column(unique = true)
+    private String contactNo;
+
     @Column(nullable = false)
     private String password;
 
