@@ -1,6 +1,7 @@
 package com.tns.post.controller;
 
 import com.tns.post.common.constants.PostResponseConstants;
+import com.tns.post.config.JwtService;
 import com.tns.post.dto.RequestPostDto;
 import com.tns.post.dto.ResponseDto;
 import com.tns.post.dto.ResponsePostDto;
@@ -15,14 +16,16 @@ import java.util.List;
 @RequestMapping("/api/posts")
 public class PostController {
     private final PostServiceImpl postService;
+    private final JwtService jwtService;
 
-    public PostController(PostServiceImpl postService) {
+    public PostController(PostServiceImpl postService, JwtService jwtService) {
         this.postService = postService;
+        this.jwtService = jwtService;
     }
 
     @PostMapping
-    public ResponseEntity<ResponseDto> createPost(@RequestBody RequestPostDto postDto) {
-        postService.createPost(postDto);
+    public ResponseEntity<ResponseDto> createPost(@RequestHeader("Authorization") String authHeader, @RequestBody RequestPostDto postDto) {
+        postService.createPost(postDto,authHeader);
         return ResponseEntity.status(HttpStatus.CREATED).body(new ResponseDto(PostResponseConstants.POST_CREATED, PostResponseConstants.SUCCESS));
     }
 
@@ -34,12 +37,11 @@ public class PostController {
 
     @GetMapping("/auth")
     public String getUserAuth(@RequestHeader(value = "Authorization",required = false) String authHeader) {
-//        Claims claims = extractAllClaims(token);
         if (authHeader==null)
             return "ResponseEntity.status(HttpStatus.OK).body(responsePostDto)  No Auth: ";
         else{
-//            Claims claims = extractAllClaims(token);
-            return "Repost Auth: "+authHeader;
+            String userId = jwtService.extractUserId(authHeader);
+            return "Repost Auth token: "+userId+ " "+jwtService.extractRole(authHeader);
         }
     }
 
