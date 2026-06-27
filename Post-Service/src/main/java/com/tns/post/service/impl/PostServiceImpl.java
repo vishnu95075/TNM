@@ -25,7 +25,7 @@ public class PostServiceImpl {
     public void createPost(RequestPostDto postDto, String authHeader) {
 
         PostEntity postEntity = PostMapper.mapToPostEntity(postDto);
-
+        postEntity.setUserId(jwtService.extractUserId(authHeader));
 
         postRepository.save(postEntity);
 

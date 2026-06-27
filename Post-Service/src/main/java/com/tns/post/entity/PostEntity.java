@@ -23,7 +23,7 @@ public class PostEntity {
     private Long id;
 
     // User who created the post
-    private Long userId;
+    private String userId;
 
 
     //    This will Update in future
