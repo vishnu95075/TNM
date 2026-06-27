@@ -19,7 +19,6 @@ public class UserProfile {
     private String userId;
     private String userName;
     private String fullName;
-    private String password;
     private String bio;
     private String profilePicUrl;
 

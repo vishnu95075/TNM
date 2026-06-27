@@ -14,7 +14,7 @@ import lombok.Setter;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class FollowEntity {
+public class FollowEntity extends BaseEntity{
 
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
