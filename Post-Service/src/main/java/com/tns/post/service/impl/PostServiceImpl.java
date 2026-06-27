@@ -44,7 +44,7 @@ public class PostServiceImpl {
                 .collect(Collectors.toList());
     }
 
-    public ResponsePostDto getPostById(Long id) {
+    public ResponsePostDto getPostById(String id) {
         boolean isExist = postRepository.existsById(id);
         if (isExist) {
             PostEntity postEntity = postRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Post", "Id", id));
@@ -64,7 +64,7 @@ public class PostServiceImpl {
 //                .findByIsDeletedFalse(pageable);
 //    }
 
-    public boolean deletePostById(Long id) {
+    public boolean deletePostById(String id) {
         boolean isExist = postRepository.existsById(id);
         if (isExist) {
             postRepository.deleteById(id);

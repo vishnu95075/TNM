@@ -19,8 +19,8 @@ import java.time.LocalDateTime;
 public class PostEntity {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    @GeneratedValue(strategy = GenerationType.UUID)
+    private String id;
 
     // User who created the post
     private String userId;
