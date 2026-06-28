@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/user")
+@RequestMapping("/user")
 public class UserController {
     private final IUserService userService;
 
@@ -29,13 +29,8 @@ public class UserController {
     }
 
 
-    @GetMapping("/hello")
-    public String hello() {
-        return "Hello";
-    }
-
     @PostMapping
-    public UserProfile registerUser(@RequestBody UserProfile user) {
+    public UserProfile createUser(@RequestBody UserProfile user) {
         System.out.println("Create " + user);
         System.out.println("hello Its work Create user");
         return userService.createUser(user);
