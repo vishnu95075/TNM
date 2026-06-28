@@ -1,4 +1,5 @@
 package com.tns.user.entity;
+
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -22,9 +23,6 @@ public class UserProfile {
     private String bio;
     private String profilePicUrl;
 
-//    private List<String> blockedUser;
-//    private List<String> followUser;
-//    private List<String> followerUser;
 
 }
 

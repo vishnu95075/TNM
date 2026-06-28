@@ -22,11 +22,11 @@ public class UserController {
         return ResponseEntity.status(HttpStatus.OK).body(userService.getAllUsers());
     }
 
-
-    @PostMapping("/register")
-    public String register() {
-        return "success";
+    @GetMapping("{id}")
+    public ResponseEntity<UserProfile> getUser(@PathVariable String id) {
+        return ResponseEntity.status(HttpStatus.OK).body(userService.getUserById(id));
     }
+
 
 
     @PostMapping

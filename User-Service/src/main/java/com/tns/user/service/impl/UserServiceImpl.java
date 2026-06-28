@@ -1,6 +1,7 @@
 package com.tns.user.service.impl;
 
 import com.tns.user.entity.UserProfile;
+import com.tns.user.exception.ResourceNotFoundException;
 import com.tns.user.exception.UserAlreadyExistsException;
 import com.tns.user.repository.UserRepository;
 import com.tns.user.service.IUserService;
@@ -32,6 +33,11 @@ public class UserServiceImpl implements IUserService {
         }
 
         return userRepository.save(user);
+    }
+
+    @Override
+    public UserProfile getUserById(String id) {
+        return userRepository.findById(id).orElseThrow(()->new ResourceNotFoundException("user","UserProfile",id));
     }
 
     @Override

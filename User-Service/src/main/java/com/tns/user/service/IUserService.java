@@ -9,6 +9,8 @@ public interface IUserService {
 
     UserProfile createUser(UserProfile user);
 
+    UserProfile getUserById(String id);
+
     void deleteUser(String userName);
 
     UserProfile updateUser(UserProfile user);
