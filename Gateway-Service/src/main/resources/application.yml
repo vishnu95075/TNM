@@ -13,14 +13,14 @@ spring:
           - id: AUTH-SERVICE
             uri: lb://AUTH-SERVICE
             predicates:
-              - Path=/a/**
+              - Path=/auth/**
             filters:
                 - StripPrefix=1
 
           - id: POST-SERVICE
             uri: lb://POST-SERVICE
             predicates:
-              - Path=/p/**
+              - Path=/post/**
             filters:
               - StripPrefix=1
           - id: USER-SERVICE

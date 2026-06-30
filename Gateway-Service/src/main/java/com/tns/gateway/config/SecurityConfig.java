@@ -23,10 +23,10 @@ public class SecurityConfig {
                 .csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers(
-                                "/p/api/**",
-                                "/user/user/**",
-                                "/p/api/posts/**",
-                                "/a/api/auth/**")
+                                "/post/api/**",
+                                "/user/api/**",
+                                "/post/api/**",
+                                "/auth/api/**")
                         .permitAll()
                         .anyRequest()
                         .authenticated())
