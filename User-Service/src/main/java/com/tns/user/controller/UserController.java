@@ -50,13 +50,6 @@ public class UserController {
         return "User Successfully Delete";
     }
 
-    //    // Authentication
-//    @GetMapping("/user-profile")
-//    @PreAuthorize("hasAnyRole('USER', 'ADMIN')")
-//    public String getUserProfile() {
-//        return "Accessible by logged-in mobile users.";
-//    }
-//
     @PostMapping("/upload")
     public ResponseEntity<?> upload(@RequestParam("file") MultipartFile file) {
         try {
