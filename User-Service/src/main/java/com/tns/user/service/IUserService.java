@@ -11,6 +11,8 @@ public interface IUserService {
 
     UserProfile getUserById(String id);
 
+    int findByIdUpdateProfilePicUrl(String userName, String profileUrl);
+
     void deleteUser(String userName);
 
     UserProfile updateUser(UserProfile user);

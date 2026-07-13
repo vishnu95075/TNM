@@ -14,11 +14,12 @@ import java.util.List;
 @RequestMapping("/user")
 public class UserController {
     private final IUserService userService;
-    private final ImageUploadService service;
+    private final ImageUploadService imageUploadService;
 
-    public UserController(IUserService userService, ImageUploadService service) {
+    public UserController(IUserService userService, ImageUploadService imageUploadService) {
         this.userService = userService;
-        this.service = service;
+        this.imageUploadService = imageUploadService;
+
     }
 
     @GetMapping
@@ -44,20 +45,18 @@ public class UserController {
         return userService.updateUser(user);
     }
 
-    @DeleteMapping("/{id}")
+    @DeleteMapping("/{userName}")
     public String deleteUser(@PathVariable String userName) {
         userService.deleteUser(userName);
         return "User Successfully Delete";
     }
 
     @PostMapping("/upload")
-    public ResponseEntity<?> upload(@RequestParam("file") MultipartFile file) {
+    public ResponseEntity<?> uploadImage(@RequestParam("file") MultipartFile file) {
         try {
-            String imageUrl = service.uploadImage(file);
+            String imageUrl = imageUploadService.uploadImage(file);
 
-            return ResponseEntity.ok(
-                    new UploadResponse(imageUrl)
-            );
+            return ResponseEntity.ok(imageUrl);
         } catch (Exception e) {
             return ResponseEntity
                     .badRequest()
@@ -65,9 +64,21 @@ public class UserController {
         }
 
     }
+    @PatchMapping("avatar/{userName}")
+    public ResponseEntity<?> uploadProfilePic(@PathVariable String userName,@RequestParam("file") MultipartFile file) {
+        try {
+            String imageUrl = imageUploadService.uploadImage(file);
+           int flag = userService.findByIdUpdateProfilePicUrl(userName,imageUrl);
+           if(flag==0){
+               return  ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Profile pic has not updated");
+           }
+            return ResponseEntity.status(HttpStatus.OK).body("Profile pic updated successful");
+        } catch (Exception e) {
+            return ResponseEntity
+                    .badRequest()
+                    .body(e.getMessage());
+        }
 
-
-    record UploadResponse(String url) {
     }
 
 

@@ -5,7 +5,6 @@ import com.tns.user.exception.ResourceNotFoundException;
 import com.tns.user.exception.UserAlreadyExistsException;
 import com.tns.user.repository.UserRepository;
 import com.tns.user.service.IUserService;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -38,6 +37,16 @@ public class UserServiceImpl implements IUserService {
     @Override
     public UserProfile getUserById(String id) {
         return userRepository.findById(id).orElseThrow(()->new ResourceNotFoundException("user","UserProfile",id));
+    }
+
+    @Override
+    public int findByIdUpdateProfilePicUrl(String username, String profileUrl) {
+        boolean isUserExit = userRepository.existsById(username);
+        if (isUserExit) {
+            throw new UserAlreadyExistsException("User already exit Exit: " + username);
+        }
+
+        return userRepository.updateProfilePicUrl(username,profileUrl);
     }
 
     @Override
