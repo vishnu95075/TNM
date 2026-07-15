@@ -37,6 +37,10 @@ public class UserController {
         return ResponseEntity.status(HttpStatus.OK).body(userService.getUserProfileByUserName(userName));
     }
 
+    @GetMapping("profile/token/{token}")
+    public ResponseEntity<UserProfile> getUserProfileByToken(@PathVariable String token) {
+        return ResponseEntity.status(HttpStatus.OK).body(userService.getUserProfileByToken(token));
+    }
 
     @PostMapping
     public UserProfile createUser(@RequestBody UserProfile user) {

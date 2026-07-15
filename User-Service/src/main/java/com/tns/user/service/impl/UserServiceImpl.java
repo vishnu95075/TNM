@@ -1,5 +1,6 @@
 package com.tns.user.service.impl;
 
+import com.tns.user.config.JwtService;
 import com.tns.user.entity.UserProfile;
 import com.tns.user.exception.ResourceNotFoundException;
 import com.tns.user.exception.UserAlreadyExistsException;
@@ -12,11 +13,12 @@ import java.util.List;
 @Service
 public class UserServiceImpl implements IUserService {
     private final UserRepository userRepository;
+    private final JwtService jwtService;
 
 
-    public UserServiceImpl(UserRepository userRepository) {
+    public UserServiceImpl(UserRepository userRepository, JwtService jwtService) {
         this.userRepository = userRepository;
-
+        this.jwtService = jwtService;
     }
 
     @Override
@@ -64,5 +66,12 @@ public class UserServiceImpl implements IUserService {
         String id = user.getUserName();
         UserProfile user1 = userRepository.findById(id).orElseThrow(() -> new RuntimeException("User Can not found by id " + id));
         return userRepository.save(user);
+    }
+
+    @Override
+    public UserProfile getUserProfileByToken(String token) {
+        String id = jwtService.extractUserId(token);
+        System.out.println("id "+id);
+        return userRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("user", "UserProfile", id));
     }
 }

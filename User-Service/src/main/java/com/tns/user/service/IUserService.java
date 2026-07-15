@@ -18,4 +18,7 @@ public interface IUserService {
     void deleteUser(String userName);
 
     UserProfile updateUser(UserProfile user);
+
+    UserProfile getUserProfileByToken(String token);
+
 }
