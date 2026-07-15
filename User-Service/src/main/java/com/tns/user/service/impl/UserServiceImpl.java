@@ -36,7 +36,12 @@ public class UserServiceImpl implements IUserService {
 
     @Override
     public UserProfile getUserById(String id) {
-        return userRepository.findById(id).orElseThrow(()->new ResourceNotFoundException("user","UserProfile",id));
+        return userRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("user", "UserProfile", id));
+    }
+
+    @Override
+    public UserProfile getUserProfileByUserName(String userName) {
+        return userRepository.findByUserName(userName);
     }
 
     @Override
@@ -46,7 +51,7 @@ public class UserServiceImpl implements IUserService {
             throw new UserAlreadyExistsException("User already exit Exit: " + username);
         }
 
-        return userRepository.updateProfilePicUrl(username,profileUrl);
+        return userRepository.updateProfilePicUrl(username, profileUrl);
     }
 
     @Override

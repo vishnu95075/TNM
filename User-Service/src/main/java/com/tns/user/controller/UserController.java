@@ -32,6 +32,11 @@ public class UserController {
         return ResponseEntity.status(HttpStatus.OK).body(userService.getUserById(id));
     }
 
+    @GetMapping("profile/{userName}")
+    public ResponseEntity<UserProfile> getUserProfile(@PathVariable String userName) {
+        return ResponseEntity.status(HttpStatus.OK).body(userService.getUserProfileByUserName(userName));
+    }
+
 
     @PostMapping
     public UserProfile createUser(@RequestBody UserProfile user) {
