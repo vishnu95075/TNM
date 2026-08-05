@@ -6,6 +6,7 @@ import com.tns.auth.dto.RegisterRequest;
 import com.tns.auth.entity.AuthUser;
 import com.tns.auth.repository.UserRepository;
 import com.tns.auth.security.JwtService;
+import com.tns.auth.service.AuthService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -25,6 +26,8 @@ public class AuthServiceImpl implements AuthService {
 
         AuthUser user = AuthUser.builder()
                 .username(request.getUsername())
+                .fullName(request.getFullName())
+                .dob(request.getDob())
                 .email(request.getEmail())
                 .password(
                         encoder.encode(request.getPassword()))

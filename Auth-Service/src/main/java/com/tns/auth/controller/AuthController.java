@@ -2,9 +2,8 @@ package com.tns.auth.controller;
 
 import com.tns.auth.dto.AuthResponse;
 import com.tns.auth.dto.LoginRequest;
-import com.tns.auth.dto.LoginResponseDTO;
 import com.tns.auth.dto.RegisterRequest;
-import com.tns.auth.service.impl.AuthService;
+import com.tns.auth.service.AuthService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

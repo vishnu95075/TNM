@@ -1,4 +1,4 @@
-package com.tns.auth.service.impl;
+package com.tns.auth.service;
 
 import com.tns.auth.dto.AuthResponse;
 import com.tns.auth.dto.LoginRequest;
