@@ -4,6 +4,7 @@ import com.tns.user.entity.UserProfile;
 import com.tns.user.service.IUserService;
 import com.tns.user.service.ImageUploadService;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
@@ -77,10 +78,10 @@ public class UserController {
     public ResponseEntity<?> uploadProfilePic(@PathVariable String userName,@RequestParam("file") MultipartFile file) {
         try {
             String imageUrl = imageUploadService.uploadImage(file);
-           int flag = userService.findByIdUpdateProfilePicUrl(userName,imageUrl);
-           if(flag==0){
-               return  ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Profile pic has not updated");
-           }
+            int flag = userService.findByIdUpdateProfilePicUrl(userName, imageUrl);
+            if (flag == 0) {
+                return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Profile pic has not updated");
+            }
             return ResponseEntity.status(HttpStatus.OK).body("Profile pic updated successful");
         } catch (Exception e) {
             return ResponseEntity
