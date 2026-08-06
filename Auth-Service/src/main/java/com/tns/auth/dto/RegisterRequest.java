@@ -11,5 +11,7 @@ public class RegisterRequest {
     private Date dob;
     private String username;
     private String email;
+    private String bio;
+    private String profilePicUrl;
     private String password;
 }

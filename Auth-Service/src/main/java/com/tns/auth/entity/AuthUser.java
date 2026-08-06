@@ -6,7 +6,7 @@ import lombok.*;
 import java.util.Date;
 
 @Entity
-@Table(name = "auth_user_db")
+@Table(name = "user")
 @Getter
 @Setter
 @NoArgsConstructor
@@ -21,10 +21,10 @@ public class AuthUser {
     @Column(unique = true, nullable = false)
     private String username;
 
-//    @Column(nullable = false)
+    @Column(nullable = false)
     private String fullName;
 
-//    @Column(nullable = true)
+    @Column(nullable = false)
     private Date dob;
 
     @Column(nullable = false)
@@ -32,6 +32,10 @@ public class AuthUser {
 
     @Column(unique = true)
     private String contactNo;
+
+    private String bio;
+
+    private String profilePicUrl;
 
     @Column(nullable = false)
     private String password;
