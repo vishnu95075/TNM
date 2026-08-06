@@ -28,7 +28,8 @@ public class SecurityConfig {
                                 "/post/api/**",
                                 "/user/api/**",
                                 "/post/api/**",
-                                "/auth/api/**")
+                                "/auth/api/**",
+                                "/user/user/avatar/**")
                         .permitAll()
                         .anyRequest()
                         .authenticated())
