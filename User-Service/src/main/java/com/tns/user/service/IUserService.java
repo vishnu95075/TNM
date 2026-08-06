@@ -11,7 +11,7 @@ public interface IUserService {
 
     UserProfile getUserById(String id);
 
-    UserProfile getUserProfileByUserName(String id);
+    UserProfile getUserProfileByUsername(String id);
 
     int findByIdUpdateProfilePicUrl(String userName, String profileUrl);
 

@@ -8,10 +8,10 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.transaction.annotation.Transactional;
 
 public interface UserRepository extends JpaRepository<UserProfile,String> {
-    UserProfile findByUserName(String userName);
+    UserProfile findByUsername(String username);
 
     @Modifying
     @Transactional
-    @Query("UPDATE UserProfile e SET e.profilePicUrl = :url WHERE e.userName = :userName")
-    int updateProfilePicUrl(@Param("userName") String username, @Param("url") String url);
+    @Query("UPDATE UserProfile e SET e.profilePicUrl = :url WHERE e.username = :username")
+    int updateProfilePicUrl(@Param("username") String username, @Param("url") String url);
 }

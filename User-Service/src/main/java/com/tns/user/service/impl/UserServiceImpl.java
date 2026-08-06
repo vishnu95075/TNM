@@ -28,9 +28,9 @@ public class UserServiceImpl implements IUserService {
 
     @Override
     public UserProfile createUser(UserProfile user) {
-        boolean isUserExit = userRepository.existsById(user.getUserName());
+        boolean isUserExit = userRepository.existsById(user.getUsername());
         if (isUserExit) {
-            throw new UserAlreadyExistsException("User already exit Exit: " + user.getUserName());
+            throw new UserAlreadyExistsException("User already exit Exit: " + user.getUsername());
         }
 
         return userRepository.save(user);
@@ -42,8 +42,8 @@ public class UserServiceImpl implements IUserService {
     }
 
     @Override
-    public UserProfile getUserProfileByUserName(String userName) {
-        return userRepository.findByUserName(userName);
+    public UserProfile getUserProfileByUsername(String userName) {
+        return userRepository.findByUsername(userName);
     }
 
     @Override
@@ -63,7 +63,7 @@ public class UserServiceImpl implements IUserService {
 
     @Override
     public UserProfile updateUser(UserProfile user) {
-        String id = user.getUserName();
+        String id = user.getUsername();
         UserProfile user1 = userRepository.findById(id).orElseThrow(() -> new RuntimeException("User Can not found by id " + id));
         return userRepository.save(user);
     }
