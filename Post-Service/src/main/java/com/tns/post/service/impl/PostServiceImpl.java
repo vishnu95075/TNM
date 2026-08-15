@@ -1,6 +1,5 @@
 package com.tns.post.service.impl;
 
-import com.tns.post.config.JwtService;
 import com.tns.post.dto.RequestPostDto;
 import com.tns.post.dto.ResponsePostDto;
 import com.tns.post.entity.PostEntity;
@@ -15,18 +14,13 @@ import java.util.stream.Collectors;
 @Service
 public class PostServiceImpl {
     private final PostRepository postRepository;
-    private final JwtService  jwtService;
 
-    public PostServiceImpl(PostRepository postRepository, JwtService jwtService) {
+    public PostServiceImpl(PostRepository postRepository) {
         this.postRepository = postRepository;
-        this.jwtService = jwtService;
     }
 
-    public void createPost(RequestPostDto postDto, String authHeader) {
-
+    public void createPost(RequestPostDto postDto) {
         PostEntity postEntity = PostMapper.mapToPostEntity(postDto);
-        postEntity.setUserId(jwtService.extractUserId(authHeader));
-
         postRepository.save(postEntity);
 
     }

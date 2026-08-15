@@ -1,7 +1,6 @@
 package com.tns.post.controller;
 
 import com.tns.post.common.constants.PostResponseConstants;
-import com.tns.post.config.JwtService;
 import com.tns.post.dto.RequestPostDto;
 import com.tns.post.dto.ResponseDto;
 import com.tns.post.dto.ResponsePostDto;
@@ -16,16 +15,14 @@ import java.util.List;
 @RequestMapping("/api/posts")
 public class PostController {
     private final PostServiceImpl postService;
-    private final JwtService jwtService;
 
-    public PostController(PostServiceImpl postService, JwtService jwtService) {
+    public PostController(PostServiceImpl postService) {
         this.postService = postService;
-        this.jwtService = jwtService;
     }
 
     @PostMapping
-    public ResponseEntity<ResponseDto> createPost(@RequestHeader("Authorization") String authHeader, @RequestBody RequestPostDto postDto) {
-        postService.createPost(postDto,authHeader);
+    public ResponseEntity<ResponseDto> createPost(@RequestBody RequestPostDto postDto) {
+        postService.createPost(postDto);
         return ResponseEntity.status(HttpStatus.CREATED).body(new ResponseDto(PostResponseConstants.POST_CREATED, PostResponseConstants.SUCCESS));
     }
 
@@ -35,15 +32,6 @@ public class PostController {
         return ResponseEntity.status(HttpStatus.OK).body(responsePostDto);
     }
 
-    @GetMapping("/auth")
-    public String getUserAuth(@RequestHeader(value = "Authorization",required = false) String authHeader) {
-        if (authHeader==null)
-            return "ResponseEntity.status(HttpStatus.OK).body(responsePostDto)  No Auth: ";
-        else{
-            String userId = jwtService.extractUserId(authHeader);
-            return "Repost Auth token: "+userId+ " "+jwtService.extractRole(authHeader);
-        }
-    }
 
     @GetMapping("/{id}")
     public ResponseEntity<?> getPostById(@PathVariable String id) {
@@ -53,9 +41,7 @@ public class PostController {
         } else {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body(new ResponseDto(PostResponseConstants.POST_NOT_FOUND, PostResponseConstants.FAIL));
         }
-
     }
-
 
     @DeleteMapping("/{id}")
     public ResponseEntity<ResponseDto> deletePost(@PathVariable String id) {
@@ -66,7 +52,6 @@ public class PostController {
         } else {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body(new ResponseDto(PostResponseConstants.POST_NOT_FOUND, PostResponseConstants.FAIL));
         }
-
     }
 
 
