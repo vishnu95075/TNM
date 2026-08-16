@@ -8,6 +8,7 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Entity
 @Table(name = "posts")
@@ -34,6 +35,7 @@ public class PostEntity {
 
     private String mediaType; // IMAGE, VIDEO
 
+    private List<String> tag;
 
     @CreatedDate
     @Column(updatable = false)

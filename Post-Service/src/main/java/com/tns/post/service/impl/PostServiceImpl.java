@@ -45,6 +45,7 @@ public class PostServiceImpl {
             ResponsePostDto responsePostDto = new ResponsePostDto();
             responsePostDto.setContent(postEntity.getContent());
             responsePostDto.setMediaUrl(postEntity.getMediaUrl());
+            responsePostDto.setTag(postEntity.getTag());
             return responsePostDto;
         }
         return null;

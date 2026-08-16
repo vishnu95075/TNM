@@ -16,6 +16,7 @@ public class PostMapper {
         postEntity.setContent(postDto.getContent());
         postEntity.setMediaUrl(postDto.getMediaUrl());
         postEntity.setUserId(postDto.getUserId());
+        postEntity.setTag(postDto.getTag());
         return postEntity;
     }
 }

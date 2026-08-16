@@ -1,6 +1,8 @@
 package com.tns.post.dto;
 import lombok.Data;
 
+import java.util.List;
+
 @Data
 public class ResponsePostDto {
 
@@ -9,4 +11,7 @@ public class ResponsePostDto {
     private String mediaUrl;
 
     private String mediaType;
+
+    private List<String> tag;
+
 }
