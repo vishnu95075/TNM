@@ -28,7 +28,7 @@ public class PostController {
 
     @PutMapping("/{id}")
     public ResponseEntity<ResponseMsgDto> updatePost(@PathVariable String id, @RequestBody RequestPostDto postDto) {
-        postService.updatePost(id,postDto);
+        postService.updatePost(id, postDto);
         return ResponseEntity.status(HttpStatus.CREATED).body(new ResponseMsgDto(PostResponseConstants.POST_CREATED, PostResponseConstants.SUCCESS));
     }
 
@@ -39,6 +39,11 @@ public class PostController {
         return ResponseEntity.status(HttpStatus.OK).body(responsePostDto);
     }
 
+    @GetMapping("/user/{userId}")
+    public ResponseEntity<List<ResponsePostDto>> getAllPosts(@PathVariable String userId) {
+        List<ResponsePostDto> responsePostDto = postService.getAllPostsByUserId(userId);
+        return ResponseEntity.status(HttpStatus.OK).body(responsePostDto);
+    }
 
     @GetMapping("/{id}")
     public ResponseEntity<?> getPostById(@PathVariable String id) {

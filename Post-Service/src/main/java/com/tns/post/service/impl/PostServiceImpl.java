@@ -73,4 +73,17 @@ public class PostServiceImpl {
         postEntity.setId(id);
         postRepository.save(postEntity);
     }
+
+    public List<ResponsePostDto> getAllPostsByUserId(String userId) {
+        return postRepository.findByUserId(userId)
+                .stream()
+                .map(postEntity -> {
+                    ResponsePostDto responsePostDto = new ResponsePostDto();
+                    responsePostDto.setContent(postEntity.getContent());
+                    responsePostDto.setMediaUrl(postEntity.getMediaUrl());
+                    responsePostDto.setTag(postEntity.getTag());
+                    return responsePostDto;
+                })
+                .collect(Collectors.toList());
+    }
 }
