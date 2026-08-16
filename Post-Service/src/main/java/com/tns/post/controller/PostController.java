@@ -2,7 +2,7 @@ package com.tns.post.controller;
 
 import com.tns.post.common.constants.PostResponseConstants;
 import com.tns.post.dto.RequestPostDto;
-import com.tns.post.dto.ResponseDto;
+import com.tns.post.dto.ResponseMsgDto;
 import com.tns.post.dto.ResponsePostDto;
 import com.tns.post.service.impl.PostServiceImpl;
 import org.springframework.http.HttpStatus;
@@ -21,9 +21,9 @@ public class PostController {
     }
 
     @PostMapping
-    public ResponseEntity<ResponseDto> createPost(@RequestBody RequestPostDto postDto) {
+    public ResponseEntity<ResponseMsgDto> createPost(@RequestBody RequestPostDto postDto) {
         postService.createPost(postDto);
-        return ResponseEntity.status(HttpStatus.CREATED).body(new ResponseDto(PostResponseConstants.POST_CREATED, PostResponseConstants.SUCCESS));
+        return ResponseEntity.status(HttpStatus.CREATED).body(new ResponseMsgDto(PostResponseConstants.POST_CREATED, PostResponseConstants.SUCCESS));
     }
 
     @GetMapping
@@ -39,18 +39,18 @@ public class PostController {
         if (responsePostDto != null) {
             return ResponseEntity.status(HttpStatus.OK).body(responsePostDto);
         } else {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(new ResponseDto(PostResponseConstants.POST_NOT_FOUND, PostResponseConstants.FAIL));
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(new ResponseMsgDto(PostResponseConstants.POST_NOT_FOUND, PostResponseConstants.FAIL));
         }
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<ResponseDto> deletePost(@PathVariable String id) {
+    public ResponseEntity<ResponseMsgDto> deletePost(@PathVariable String id) {
         System.out.println("Delete Controller " + id);
         boolean isDeleted = postService.deletePostById(id);
         if (isDeleted) {
-            return ResponseEntity.status(HttpStatus.OK).body(new ResponseDto(PostResponseConstants.POST_DELETED, PostResponseConstants.SUCCESS));
+            return ResponseEntity.status(HttpStatus.OK).body(new ResponseMsgDto(PostResponseConstants.POST_DELETED, PostResponseConstants.SUCCESS));
         } else {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(new ResponseDto(PostResponseConstants.POST_NOT_FOUND, PostResponseConstants.FAIL));
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(new ResponseMsgDto(PostResponseConstants.POST_NOT_FOUND, PostResponseConstants.FAIL));
         }
     }
 
