@@ -33,6 +33,7 @@ public class PostServiceImpl {
                     ResponsePostDto responsePostDto = new ResponsePostDto();
                     responsePostDto.setContent(postEntity.getContent());
                     responsePostDto.setMediaUrl(postEntity.getMediaUrl());
+                    responsePostDto.setTag(postEntity.getTag());
                     return responsePostDto;
                 })
                 .collect(Collectors.toList());
@@ -65,5 +66,11 @@ public class PostServiceImpl {
             postRepository.deleteById(id);
         }
         return isExist;
+    }
+
+    public void updatePost(String id, RequestPostDto postDto) {
+        PostEntity postEntity = PostMapper.mapToPostEntity(postDto);
+        postEntity.setId(id);
+        postRepository.save(postEntity);
     }
 }

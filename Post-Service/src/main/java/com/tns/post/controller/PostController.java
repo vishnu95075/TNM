@@ -26,8 +26,15 @@ public class PostController {
         return ResponseEntity.status(HttpStatus.CREATED).body(new ResponseMsgDto(PostResponseConstants.POST_CREATED, PostResponseConstants.SUCCESS));
     }
 
+    @PutMapping("/{id}")
+    public ResponseEntity<ResponseMsgDto> updatePost(@PathVariable String id, @RequestBody RequestPostDto postDto) {
+        postService.updatePost(id,postDto);
+        return ResponseEntity.status(HttpStatus.CREATED).body(new ResponseMsgDto(PostResponseConstants.POST_CREATED, PostResponseConstants.SUCCESS));
+    }
+
+
     @GetMapping
-    public ResponseEntity<List<ResponsePostDto>> getPosts() {
+    public ResponseEntity<List<ResponsePostDto>> getAllPosts() {
         List<ResponsePostDto> responsePostDto = postService.getAllPosts();
         return ResponseEntity.status(HttpStatus.OK).body(responsePostDto);
     }
