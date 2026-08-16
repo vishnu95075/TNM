@@ -23,17 +23,12 @@ public class PostEntity {
     @GeneratedValue(strategy = GenerationType.UUID)
     private String id;
 
-    // User who created the post
     private String userId;
 
 
-    //    This will Update in future
     private String content;
 
-    // Image/Video stored in S3, Cloudinary, etc.
-    private String mediaUrl;
-
-    private String mediaType; // IMAGE, VIDEO
+    private List<String> mediaUrl;
 
     private List<String> tag;
 

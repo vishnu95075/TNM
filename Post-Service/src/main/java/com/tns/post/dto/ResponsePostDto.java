@@ -8,9 +8,7 @@ public class ResponsePostDto {
 
     private String content;
 
-    private String mediaUrl;
-
-    private String mediaType;
+    private List<String> mediaUrl;
 
     private List<String> tag;
 

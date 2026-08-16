@@ -12,8 +12,7 @@ public class RequestPostDto {
 
     private String content;
 
-    // Image/Video stored in S3, Cloudinary, etc.
-    private String mediaUrl;
+    private List<String> mediaUrl;
     private List<String> tag;
 
 }
