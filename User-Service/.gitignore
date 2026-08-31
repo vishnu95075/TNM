@@ -1,6 +1,7 @@
 # USER-SERVICE
 
-application.properties
+.properties
+.yml
 
 HELP.md
 target/
