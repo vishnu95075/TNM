@@ -1,6 +1,6 @@
+# USER-SERVICE
 
-application.*
-
+application.properties
 
 HELP.md
 target/
