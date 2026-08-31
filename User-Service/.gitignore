@@ -1,7 +1,7 @@
 # USER-SERVICE
 
-.properties
-.yml
+*.properties
+*.yml
 
 HELP.md
 target/
