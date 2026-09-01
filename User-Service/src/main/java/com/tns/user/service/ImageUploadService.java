@@ -25,7 +25,7 @@ public class ImageUploadService {
         if(!Objects.requireNonNull(file.getContentType()).startsWith("image/")){
             throw new RuntimeException("Only images allowed");
         }
-        Map uploadResult = cloudinary.uploader()
+        Map<?,?> uploadResult = cloudinary.uploader()
                 .upload(
                         file.getBytes(),
                         ObjectUtils.asMap(
