@@ -5,6 +5,7 @@ import com.tns.post.common.constants.PostResponseConstants;
 import com.tns.post.dto.RequestPostDto;
 import com.tns.post.dto.ResponseMsgDto;
 import com.tns.post.dto.ResponsePostDto;
+import com.tns.post.entity.PostEntity;
 import com.tns.post.service.MediaUploadService;
 import com.tns.post.service.impl.PostServiceImpl;
 import org.springframework.http.HttpStatus;
@@ -32,17 +33,7 @@ public class PostController {
     @PostMapping(consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
     public ResponseEntity<?> createPost(
             @RequestPart(value = "files", required = false) MultipartFile[] files,
-            @RequestPart("postDto") String postDtoString,
-            ObjectMapper objectMapper) throws Exception {
-
-        RequestPostDto postDto;
-        try {
-            postDto = objectMapper.readValue(postDtoString, RequestPostDto.class);
-        } catch (JsonProcessingException e) {
-            return ResponseEntity
-                    .status(HttpStatus.BAD_REQUEST)
-                    .body(new ResponseMsgDto("Invalid JSON format for postDto", PostResponseConstants.FAILURE));
-        }
+            @RequestPart("postDto") RequestPostDto postDto) throws Exception {
 
         List<String> listOfUrls = new ArrayList<>();
         if (files != null) {
