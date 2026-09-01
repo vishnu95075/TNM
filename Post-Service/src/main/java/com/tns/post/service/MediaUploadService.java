@@ -18,12 +18,12 @@ public class MediaUploadService {
 
 
     public String uploadMedia(MultipartFile file) throws Exception {
-        Map uploadResult = null;
+        Map<?,?> uploadResult = null;
         if (file.isEmpty()) {
             throw new RuntimeException("Video file is empty");
         }
 
-        if (file.getContentType().startsWith("video/")) {
+        if (Objects.requireNonNull(file.getContentType()).startsWith("video/")) {
             uploadResult = cloudinary.uploader().upload(
                     file.getBytes(),
                     ObjectUtils.asMap(
@@ -39,7 +39,7 @@ public class MediaUploadService {
                             )
                     );
 
-        } else throw new RuntimeException("Only video files are allowed");
+        } else throw new RuntimeException("Only image/video files are allowed");
         System.out.println(uploadResult.toString());
         return uploadResult.get("secure_url").toString();
     }
