@@ -7,6 +7,6 @@ import java.util.Collection;
 import java.util.List;
 import java.util.UUID;
 
-public interface PostRepository extends JpaRepository<Post, String> {
-    List<Post> findAllByIdIn(Collection<UUID> ids);
-}
+//public interface PostRepository extends JpaRepository<Post, String> {
+//    List<Post> findAllByIdIn(Collection<UUID> ids);
+//}

@@ -1,18 +1,18 @@
-package com.tnm.feed.entity;
-
+package com.tnm.feed.dto;
 
 import lombok.Getter;
+import lombok.Setter;
 
 import java.time.LocalDateTime;
-import java.util.Date;
 import java.util.List;
+
 @Getter
-public class Post {
+@Setter
+public class PostDto {
 
     private String id;
 
     private String userId;
-
 
     private String content;
 
@@ -23,4 +23,5 @@ public class Post {
     private LocalDateTime createdAt;
 
     private LocalDateTime updatedAt;
+
 }

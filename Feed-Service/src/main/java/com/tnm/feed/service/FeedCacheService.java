@@ -27,7 +27,7 @@ public class FeedCacheService {
     }
 
 
-    public Set<String> getFeedPage(UUID userId, long maxTimestamp, int limit) {
+    public Set<String> getFeedPage(String userId, long maxTimestamp, int limit) {
         String key = FEED_KEY_PREFIX + userId;
 
         ZSetOperations<String, String> zSetOps = redisTemplate.opsForZSet();

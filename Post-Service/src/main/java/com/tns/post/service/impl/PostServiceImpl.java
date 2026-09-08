@@ -26,7 +26,10 @@ public class PostServiceImpl {
     }
 
     public List<ResponsePostDto> getAllPosts() {
-
+        List<PostEntity> all =    postRepository.findAll();
+        if(all.isEmpty()){
+            new RuntimeException("Not found");
+        }
         return postRepository.findAll()
                 .stream()
                 .map(postEntity -> {
