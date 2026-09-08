@@ -29,6 +29,12 @@ spring:
                 - Path=/user/**
             filters:
               - StripPrefix=1
+          - id: FEED-SERVICE
+            uri: lb://FEED-SERVICE
+            predicates:
+              - Path=/feed/**
+            filters:
+              - StripPrefix=1
 
 management.endpoints.web.exposure.include: '*'
 
