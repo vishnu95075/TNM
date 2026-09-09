@@ -19,7 +19,7 @@ public class UserProfile {
 
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
-    private String authId;
+    private String userId;
 
     @Column(unique = true, nullable = false)
     private String username;

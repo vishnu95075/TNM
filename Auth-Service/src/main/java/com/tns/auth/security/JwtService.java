@@ -25,7 +25,7 @@ public class JwtService {
 
         return Jwts.builder()
                 .subject(user.getUsername())
-                .claim("userId", user.getAuthId())
+                .claim("userId", user.getUserId())
                 .claim("email", user.getEmail())
                 .claim("role", user.getRole())
                 .issuer("TNS-Auth-Service")
