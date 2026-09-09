@@ -24,23 +24,7 @@ public class FeedService {
 
 
 //    public FeedResponse getUserFeed(String userId, Long maxTimestamp, int pageSize) {
-//        long cursor = (maxTimestamp != null) ? maxTimestamp : System.currentTimeMillis();
-//
-//        Set<String> postIdStrings = feedCacheService.getFeedPage(userId, cursor, pageSize);
-//
-//        if (postIdStrings.isEmpty()) {
-//            return new FeedResponse(List.of(), null);
-//        }
-//
-//        List<UUID> postIds = postIdStrings.stream()
-//                .map(UUID::fromString)
-//                .collect(Collectors.toList());
-//
-//        List<Post> posts = postRepository.findAllByIdIn(postIds);
-//
-//        Long nextCursor = posts.isEmpty() ? null : posts.getLast().getCreatedAt().toEpochSecond(ZoneOffset.UTC);
-//
-//        return new FeedResponse(posts, nextCursor);
+
 //    }
 
 
