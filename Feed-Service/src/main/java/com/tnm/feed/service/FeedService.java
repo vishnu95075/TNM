@@ -1,32 +1,25 @@
 package com.tnm.feed.service;
 
 import com.tnm.feed.client.PostClient;
-import com.tnm.feed.dto.FeedResponse;
 import com.tnm.feed.dto.PostDto;
-import com.tnm.feed.entity.Post;
 //import com.tnm.feed.repository.PostRepository;
+import com.tnm.feed.repository.FeedRepository;
+import com.tnm.feed.repository.projection.PostWithUserProjection;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
-import java.time.ZoneOffset;
 import java.util.List;
-import java.util.Set;
-import java.util.UUID;
-import java.util.stream.Collectors;
 
 @Service
-@RequiredArgsConstructor
 public class FeedService {
 
-    private final FeedCacheService feedCacheService;
-//    private final PostRepository postRepository;
     private final PostClient postClient;
+    private final FeedRepository feedRepository;
 
-
-//    public FeedResponse getUserFeed(String userId, Long maxTimestamp, int pageSize) {
-
-//    }
-
+    public FeedService( PostClient postClient, FeedRepository feedRepository) {
+        this.postClient = postClient;
+        this.feedRepository = feedRepository;
+    }
 
 
     public PostDto getFeedPost(String postId) {
@@ -37,5 +30,8 @@ public class FeedService {
         List<PostDto> postDtos = postClient.getAllPost();
 
         return postDtos;
+    }
+    public List<PostWithUserProjection> getAllPostsWithUsers() {
+        return feedRepository.findPostsWithUserInfo();
     }
 }

@@ -1,15 +1,13 @@
 package com.tnm.feed.controller;
 
-import com.tnm.feed.dto.FeedResponse;
 import com.tnm.feed.dto.PostDto;
-import com.tnm.feed.entity.Post;
+import com.tnm.feed.repository.projection.PostWithUserProjection;
 import com.tnm.feed.service.FeedService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.UUID;
 
 @RestController
 @RequestMapping("/api/feed")
@@ -28,5 +26,12 @@ public class FeedController {
 //        FeedResponse feed = feedService.getUserFeed(userId, maxTimestamp, limit);
         List<PostDto> p = feedService.getAllFeedPost();
         return ResponseEntity.ok(p);
+    }
+
+
+    @GetMapping("all")
+    public ResponseEntity<List<PostWithUserProjection>> getPostsWithUsersById() {
+        List<PostWithUserProjection> posts = feedService.getAllPostsWithUsers();
+        return ResponseEntity.ok(posts);
     }
 }
