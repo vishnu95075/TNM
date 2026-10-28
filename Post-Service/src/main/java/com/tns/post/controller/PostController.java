@@ -41,7 +41,7 @@ public class PostController {
                 listOfUrls.add(mediaUploadService.uploadMedia(file));
             }
         }
-        
+
         postDto.setMediaUrl(listOfUrls);
         postService.createPost(postDto);
 
@@ -68,6 +68,13 @@ public class PostController {
         List<ResponsePostDto> responsePostDto = postService.getAllPostsByUserId(userId);
         return ResponseEntity.status(HttpStatus.OK).body(responsePostDto);
     }
+
+    @GetMapping("/tag/{tagName}")
+    public ResponseEntity<List<ResponsePostDto>> getAllPostsByTagName(@PathVariable String tagName) {
+        List<ResponsePostDto> responsePostDto = postService.getAllPostsByTagName(tagName);
+        return ResponseEntity.status(HttpStatus.OK).body(responsePostDto);
+    }
+
 
     @GetMapping("/{id}")
     public ResponseEntity<?> getPostById(@PathVariable String id) {

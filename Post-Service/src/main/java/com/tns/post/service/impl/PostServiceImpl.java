@@ -26,8 +26,8 @@ public class PostServiceImpl {
     }
 
     public List<ResponsePostDto> getAllPosts() {
-        List<PostEntity> all =    postRepository.findAll();
-        if(all.isEmpty()){
+        List<PostEntity> all = postRepository.findAll();
+        if (all.isEmpty()) {
             new RuntimeException("Not found");
         }
         return postRepository.findAll()
@@ -89,4 +89,18 @@ public class PostServiceImpl {
                 })
                 .collect(Collectors.toList());
     }
+
+    public List<ResponsePostDto> getAllPostsByTagName(String tagName) {
+        return postRepository.findByTagName(tagName)
+                .stream()
+                .map(postEntity -> {
+                    ResponsePostDto responsePostDto = new ResponsePostDto();
+                    responsePostDto.setContent(postEntity.getContent());
+                    responsePostDto.setMediaUrl(postEntity.getMediaUrl());
+                    responsePostDto.setTag(postEntity.getTag());
+                    return responsePostDto;
+                })
+                .collect(Collectors.toList());
+    }
+
 }
