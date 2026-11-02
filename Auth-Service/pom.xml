@@ -10,6 +10,7 @@
 	</parent>
 	<groupId>com.tns</groupId>
 	<artifactId>Auth-Service</artifactId>
+    <packaging>jar</packaging>
 	<version>0.0.1-SNAPSHOT</version>
 	<name/>
 	<description/>
