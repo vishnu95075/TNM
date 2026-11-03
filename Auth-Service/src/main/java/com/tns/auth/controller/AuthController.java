@@ -1,5 +1,6 @@
 package com.tns.auth.controller;
 
+import com.tns.auth.dto.AuthContactInfoDto;
 import com.tns.auth.dto.AuthResponse;
 import com.tns.auth.dto.LoginRequest;
 import com.tns.auth.dto.RegisterRequest;
@@ -16,6 +17,7 @@ import org.springframework.web.bind.annotation.*;
 public class AuthController {
 
     private final AuthService authService;
+    private final AuthContactInfoDto authContactInfoDto;
 
     @PostMapping("/register")
     public ResponseEntity<AuthResponse> register(
@@ -39,6 +41,11 @@ public class AuthController {
         return ResponseEntity.ok(
                 authService.logout()
         );
+    }
+
+    @GetMapping("contact-info")
+    public ResponseEntity<AuthContactInfoDto> getContactInfo(){
+        return ResponseEntity.ok(authContactInfoDto);
     }
 
 }
