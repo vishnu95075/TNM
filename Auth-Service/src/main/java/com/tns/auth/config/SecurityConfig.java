@@ -1,4 +1,4 @@
-package com.tns.auth.security;
+package com.tns.auth.config;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;

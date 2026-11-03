@@ -5,7 +5,7 @@ import com.tns.auth.dto.LoginRequest;
 import com.tns.auth.dto.RegisterRequest;
 import com.tns.auth.entity.AuthUser;
 import com.tns.auth.repository.UserRepository;
-import com.tns.auth.security.JwtService;
+import com.tns.auth.config.JwtService;
 import com.tns.auth.service.AuthService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.authentication.AuthenticationManager;

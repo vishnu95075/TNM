@@ -1,4 +1,4 @@
-package com.tns.auth.security;
+package com.tns.auth.config;
 import com.tns.auth.entity.AuthUser;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
