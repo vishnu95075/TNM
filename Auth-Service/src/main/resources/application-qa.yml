@@ -41,7 +41,7 @@ build:
 auth:
   description: "Welcome to auth service. This service have authentication creation related code."
   contactDetails:
-    name: "Vishnu Kumar Developer"
+    name: "Vishnu Kumar Developer (QA)"
     email: "vishnukp95075@gmail.com"
   onCallSupport:
     - +91 9334921191
