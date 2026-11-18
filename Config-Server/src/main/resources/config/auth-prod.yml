@@ -1,0 +1,48 @@
+server:
+  port: 8082
+
+spring:
+  application:
+    name: AUTH-SERVICE
+  datasource:
+    url: jdbc:postgresql://${DATABASE_HOST:localhost}:${DATABASE_PORT:5432}/${DATABASE_NAME:test}
+    username: postgres
+    password: 12345678
+
+  jpa:
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+        ddl-auto: update
+    show-sql: true
+
+
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka/
+    register-with-eureka: true
+    fetch-registry: true
+
+logging:
+  level:
+    org:
+      springframework:
+        security: DEBUG
+
+jwt:
+  secret: VGhpc0lzQVN1cGVyU2VjcmV0S2V5Rm9ySldUU3ByaW5nQm9vdDM=
+  expiration: 86400000
+
+build:
+  version: "3.0"
+
+auth:
+  description: "Welcome to auth service. This service have authentication creation related code."
+  contactDetails:
+    name: "Vishnu Kumar Developer (Production)"
+    email: "vishnukp95075@gmail.com"
+  onCallSupport:
+    - +91 9334921191
+    - +91 1191990000
