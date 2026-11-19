@@ -4,6 +4,9 @@ server:
 spring:
   application:
     name: auth
+  profiles:
+    active:
+      -- "dev"
   datasource:
     url: jdbc:postgresql://${DATABASE_HOST:localhost}:${DATABASE_PORT:5432}/${DATABASE_NAME:test}
     username: postgres
@@ -15,8 +18,8 @@ spring:
         dialect: org.hibernate.dialect.PostgreSQLDialect
         ddl-auto: update
     show-sql: true
-
-
+  config:
+    import: "optional:configserver:http://localhost:8071/"
 
 eureka:
   client:

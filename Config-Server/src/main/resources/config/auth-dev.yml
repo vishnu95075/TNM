@@ -39,7 +39,7 @@ build:
   version: "3.0"
 
 auth:
-  description: "Welcome to auth service. This service have authentication creation related code."
+  description: "Welcome to Config service. This service have authentication creation related code.this is config server"
   contactDetails:
     name: "Vishnu Kumar Developer (Developer)"
     email: "vishnukp95075@gmail.com"

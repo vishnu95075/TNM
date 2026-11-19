@@ -39,9 +39,9 @@ build:
   version: "3.0"
 
 auth:
-  description: "Welcome to auth service. This service have authentication creation related code."
+  description: "Welcome to Config service. This service have authentication creation related code."
   contactDetails:
-    name: "Vishnu Kumar Developer (QA)"
+    name: "Vishnu Kumar Developer (Default)"
     email: "vishnukp95075@gmail.com"
   onCallSupport:
     - +91 9334921191
