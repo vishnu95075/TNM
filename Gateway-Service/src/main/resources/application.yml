@@ -4,14 +4,14 @@ server:
 
 spring:
   application:
-    name: API-GATEWAY
+    name: GATEWAY
   cloud:
     gateway:
       server:
         webmvc:
           routes:
-          - id: AUTH-SERVICE
-            uri: lb://AUTH-SERVICE
+          - id: auth
+            uri: lb://auth
             predicates:
               - Path=/auth/**
             filters:
@@ -29,8 +29,8 @@ spring:
                 - Path=/user/**
             filters:
               - StripPrefix=1
-          - id: FEED-SERVICE
-            uri: lb://FEED-SERVICE
+          - id: feed
+            uri: lb://feed
             predicates:
               - Path=/feed/**
             filters:
