@@ -4,6 +4,7 @@ import com.tnm.feed.dto.PostDto;
 import com.tnm.feed.repository.projection.PostWithUserProjection;
 import com.tnm.feed.service.FeedService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.core.env.Environment;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -15,6 +16,7 @@ import java.util.List;
 public class FeedController {
 
     private final FeedService feedService;
+    Environment environment;
 
     @GetMapping
     public ResponseEntity<List<PostDto>> getFeed(
@@ -33,5 +35,10 @@ public class FeedController {
     public ResponseEntity<List<PostWithUserProjection>> getPostsWithUsersById() {
         List<PostWithUserProjection> posts = feedService.getAllPostsWithUsers();
         return ResponseEntity.ok(posts);
+    }
+
+    @GetMapping("/profile")
+    public ResponseEntity<?> getProfile(){
+        return ResponseEntity.ok(environment.getActiveProfiles());
     }
 }

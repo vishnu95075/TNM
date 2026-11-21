@@ -8,6 +8,7 @@ import com.tns.post.dto.ResponsePostDto;
 import com.tns.post.entity.PostEntity;
 import com.tns.post.service.MediaUploadService;
 import com.tns.post.service.impl.PostServiceImpl;
+import org.springframework.core.env.Environment;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -16,6 +17,7 @@ import org.springframework.web.multipart.MultipartFile;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 @RestController
@@ -23,6 +25,7 @@ import java.util.List;
 public class PostController {
     private final PostServiceImpl postService;
     private final MediaUploadService mediaUploadService;
+    Environment environment;
 
     public PostController(PostServiceImpl postService, MediaUploadService mediaUploadService) {
         this.postService = postService;
@@ -97,5 +100,9 @@ public class PostController {
         }
     }
 
-
+    @GetMapping("profile")
+    public ResponseEntity<String> getActiveProfile(){
+        String activeProfiles = Arrays.toString(environment.getActiveProfiles());
+        return ResponseEntity.ok(activeProfiles);
+    }
 }

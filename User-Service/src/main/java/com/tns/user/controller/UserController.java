@@ -3,12 +3,14 @@ package com.tns.user.controller;
 import com.tns.user.entity.UserProfile;
 import com.tns.user.service.IUserService;
 import com.tns.user.service.ImageUploadService;
+import org.springframework.core.env.Environment;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.util.Arrays;
 import java.util.List;
 
 @RestController
@@ -16,7 +18,7 @@ import java.util.List;
 public class UserController {
     private final IUserService userService;
     private final ImageUploadService imageUploadService;
-
+    Environment environment;
     public UserController(IUserService userService, ImageUploadService imageUploadService) {
         this.userService = userService;
         this.imageUploadService = imageUploadService;
@@ -91,5 +93,9 @@ public class UserController {
 
     }
 
-
+    @GetMapping("profile")
+    public ResponseEntity<String> getActiveProfile(){
+        String activeProfiles = Arrays.toString(environment.getActiveProfiles());
+        return ResponseEntity.ok(activeProfiles);
+    }
 }
